@@ -2,6 +2,7 @@
 
 import sys
 import re
+from termsC import Term_poandco
 
 def sign_cleaner(term_list):
     termlen = len(term_list)
@@ -10,7 +11,7 @@ def sign_cleaner(term_list):
             term_list[idx+1] = "-" + term_list[idx+1]
             term_list[idx] = None
     
-    term_list = filter(None, term_list)
+    term_list = list(filter(None, term_list))
     return term_list
 
 
@@ -24,7 +25,7 @@ def parser(poly):
     poly = re.sub("-\+|\+-", "-", poly)
     poly = re.sub("--", "+", poly)
     poly_splited = re.split("(?<!(\*|\^|/))([-])|(?<!(\*|\^|/))\+", poly)
-    poly_splited = filter(None, poly_splited)
+    poly_splited = list(filter(None, poly_splited))
     term_list = sign_cleaner(poly_splited)
     return term_list
 
@@ -45,7 +46,10 @@ def Spoly_rev(poly2):
             term = "-" + term
             poly2[i] = term
 
-
+def classuser(poly):
+    for term in poly:
+        claHolder = Term_poandco(term)
+        print(claHolder.get_power())
 
 def main():
     if (len(sys.argv) > 2):
@@ -68,7 +72,7 @@ def main():
     terms_checker(poly1,poly2)
     Spoly_rev(poly2)
     Apoly = poly1 + poly2
-    print (Apoly)
+    classuser(Apoly)
 
 if __name__ == "__main__":
     main()

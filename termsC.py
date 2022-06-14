@@ -6,13 +6,14 @@ class Term_poandco:
         self._coef = self.coef_H(term)
         self._power = self.power_H(term)
 
-    def power_H(term):
-        if re.find('x|X',term):
-            if re.find('^', term):
-                indx = re.find('^', term)
-                if term[indx+1] !=  "-":
+    def power_H(self, term):
+        if re.search('x|X',term):
+            if re.search('\^', term):
+                indx = re.search('\^', term)
+                indx = indx.start()
+                if indx > 0 and term[indx+1] !=  "-":
                     return term[indx+1]
-                else:
+                elif indx > 0:
                     power = term[indx+1] + term[indx+1]
                     return power
             else:
@@ -22,9 +23,10 @@ class Term_poandco:
         else:
             return 0
     
-    def coef_H(term):
-        if re.find("(?<!(\^))[0-9]", term):
-            indx = re.find("(?<!(\^))[0-9]", term)
+    def coef_H(self, term):
+        if re.search("(?<!(\^))[0-9]", term):
+            indx = re.search("(?<!(\^))[0-9]", term)
+            indx = indx.start()
             return term[indx]
         else:
             return 1
