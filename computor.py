@@ -47,9 +47,13 @@ def Spoly_rev(poly2):
             poly2[i] = term
 
 def classuser(poly):
+    claHolder = []
     for term in poly:
-        claHolder = Term_poandco(term)
-        print(claHolder.get_power())
+        obj = Term_poandco(term)
+        claHolder.append(obj._all)
+    print("dodo")
+    print(claHolder)
+    
 
 def main():
     if (len(sys.argv) > 2):

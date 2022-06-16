@@ -5,6 +5,7 @@ class Term_poandco:
     def __init__(self, term):
         self._coef = self.coef_H(term)
         self._power = self.power_H(term)
+        self._all = [self._coef, self._power]
 
     def power_H(self, term):
         if re.search('x|X',term):
