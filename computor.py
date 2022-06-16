@@ -30,7 +30,7 @@ def parser(poly):
     return term_list
 
 
-def terms_checker(poly1, poly2):
+def terms_corr(poly1, poly2):
     for i, term in enumerate(poly1):
         poly1[i] = term.replace('+', '')
 
@@ -52,6 +52,7 @@ def classuser(poly):
         obj = Term_poandco(term)
         claHolder.append(obj._all)
     claHolder.pop()
+    claHolder.sort(key = lambda claHolder: int(claHolder[1]))
     print(claHolder)
     
 
@@ -73,7 +74,7 @@ def main():
         poly2 = parser(arr[1])
         if poly2 == []:
             poly2 = ['0']
-    terms_checker(poly1,poly2)
+    terms_corr(poly1,poly2)
     Spoly_rev(poly2)
     Apoly = poly1 + poly2
     classuser(Apoly)

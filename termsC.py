@@ -12,10 +12,25 @@ class Term_poandco:
             if re.search('\^', term):
                 indx = re.search('\^', term)
                 indx = indx.start()
-                if indx > 0 and term[indx+1] !=  "-":
-                    return term[indx+1]
-                elif indx > 0:
-                    power = term[indx+1] + term[indx+1]
+                power = ''
+
+                if term[indx+1] !=  "-":
+                    indx = indx + 1
+                    for number in term[indx:]:
+                        if number.isdigit():
+                            power = power + number
+                        else:
+                            break
+                    return power
+
+                else:
+                    power = term[indx+1]
+                    indx = indx + 2
+                    for number in term[indx:]:
+                        if number.isdigit():
+                            power = power + number
+                        else:
+                            break
                     return power
             else:
                 return 1
@@ -28,7 +43,19 @@ class Term_poandco:
         if re.search("(?<!(\^))[0-9]", term):
             indx = re.search("(?<!(\^))[0-9]", term)
             indx = indx.start()
-            return term[indx]
+            if indx != 0:
+                if term[indx-1] == '-':
+                    coef = '-'
+                else:
+                    coef = ''
+            else:
+                coef = ''
+            for number in term[indx:]:
+                if number.isdigit():
+                    coef = coef + number
+                else:
+                    break
+            return coef
         else:
             return 1
 
