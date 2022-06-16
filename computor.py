@@ -51,7 +51,7 @@ def classuser(poly):
     for term in poly:
         obj = Term_poandco(term)
         claHolder.append(obj._all)
-    print("dodo")
+    claHolder.pop()
     print(claHolder)
     
 
