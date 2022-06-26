@@ -53,7 +53,21 @@ def classuser(poly):
         claHolder.append(obj._all)
     claHolder.pop()
     claHolder.sort(key = lambda claHolder: int(claHolder[1]))
-    print(claHolder)
+    return (claHolder)
+
+def simplifier(Apoly):
+    llen = len(Apoly) - 1
+    i = 0
+    indxl = []
+    while i < llen:
+        if i >= llen:
+            break
+        if Apoly[i][1] == Apoly[i + 1][1]:
+            Apoly[i + 1][0] = int(Apoly[i + 1][0]) + int(Apoly[i][0])
+            indxl.append(i)
+        i += 1
+    Apoly = [i for j, i in enumerate(Apoly) if j not in indxl]
+    return (Apoly)
     
 
 def main():
@@ -77,7 +91,10 @@ def main():
     terms_corr(poly1,poly2)
     Spoly_rev(poly2)
     Apoly = poly1 + poly2
-    classuser(Apoly)
+    Apoly = classuser(Apoly)
+    print(Apoly)
+    Apoly = simplifier(Apoly)
+    print(Apoly)
 
 if __name__ == "__main__":
     main()
