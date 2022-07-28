@@ -90,7 +90,9 @@ def main():
             poly2 = ['0']
     terms_corr(poly1,poly2)
     Spoly_rev(poly2)
+    print("---------",poly2)
     Apoly = poly1 + poly2
+    print("---------",Apoly)
     Apoly = classuser(Apoly)
     print(Apoly)
     Apoly = simplifier(Apoly)
